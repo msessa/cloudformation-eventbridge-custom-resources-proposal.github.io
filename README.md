@@ -182,6 +182,13 @@ graph TB
     SF1 -->|Execution Logs| LOGS
     LAMBDA2 -->|Execution Logs| LOGS
 
+    %% Styling
+    classDef customResource fill:#ff9999,stroke:#333,stroke-width:2px
+    classDef eventBridge fill:#99ccff,stroke:#333,stroke-width:2px
+    classDef provider fill:#99ff99,stroke:#333,stroke-width:2px
+    classDef cloudFormation fill:#ffcc99,stroke:#333,stroke-width:2px
+    classDef platformAccount fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
+    classDef consumerAccount fill:#fff0e6,stroke:#cc6600,stroke-width:2px
     
     class CRA1,CRA2,CRB1,CRB2,CRN1 customResource
     class SHARED_BUS,RULE1,RULE2,RULE3 eventBridge
