@@ -45,6 +45,18 @@ Resources:
 
 ### Use Case 1: Asset-less Custom Resource Provider
 
+#### Problem Statement
+
+Current CloudFormation custom resource patterns create significant operational burden for teams deploying infrastructure at scale:
+
+- **Asset bundling complexity**: Lambda-backed custom resources require packaging, versioning, and distributing function code alongside infrastructure templates
+- **StackSets deployment friction**: Lambda functions must be pre-deployed to all target accounts and regions before StackSets can reference them
+- **Runtime maintenance burden**: Lambda functions require ongoing updates for security patches and runtime version compatibility
+
+These challenges are particularly acute in enterprise environments where infrastructure templates are developed by platform teams but deployed across numerous accounts and regions through automated processes.
+
+#### Example design with EventBridge integration
+
 ```mermaid
 graph TB
     subgraph "AWS Account - Single Stack"
@@ -104,6 +116,20 @@ graph TB
 - Reduced deployment complexity
 
 ### Use Case 2: Centralized Custom Resource Providers
+
+#### Problem Statement
+
+Large organizations face significant challenges when implementing consistent custom resource behavior across multiple AWS accounts:
+
+- **Provider duplication**: Each application team must implement and maintain their own copies of common custom resource providers
+- **Inconsistent implementations**: Different teams create variations of similar custom resources, leading to unpredictable behavior and maintenance overhead
+- **Version management complexity**: Updates to custom resource logic require coordinated deployments across all consuming accounts, coupled with CloudFormation limitations in changing the ServiceToken for an existing resource.
+- **Security and compliance gaps**: Decentralized custom resource implementations make it difficult to enforce consistent security practices and audit requirements
+- **Cross-account deployment challenges**: Lambda resource policies have limited cross-account support, making shared custom resources difficult to implement securely
+
+These issues are compounded in regulated industries where consistent resource behavior and centralized governance are critical for compliance and operational excellence.
+
+#### Example design with EventBridge integration
 
 ```mermaid
 graph TB
